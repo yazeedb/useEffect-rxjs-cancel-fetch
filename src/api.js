@@ -55,5 +55,5 @@ export const getFruit = name =>
     setTimeout(() => {
       const fruit = fruits.find(f => f.name === name);
       resolve(fruit);
-    }, 600);
+    }, 2000);
   });
