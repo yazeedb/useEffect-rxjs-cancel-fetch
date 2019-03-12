@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { from } from 'rxjs';
+import { defer } from 'rxjs';
 import { getFruit } from './api';
 
 export const useFruitDetail = fruitName => {
@@ -11,7 +11,9 @@ export const useFruitDetail = fruitName => {
         return;
       }
 
-      const subscription = from(getFruit(fruitName)).subscribe(setFruitDetail);
+      const subscription = defer(() => getFruit(fruitName)).subscribe(
+        setFruitDetail
+      );
 
       return () => {
         subscription.unsubscribe();
